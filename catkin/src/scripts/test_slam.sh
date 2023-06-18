@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # build the workspace
+source environment.bash
 cd $(pwd)/../..; catkin_make
 
 source devel/setup.bash
 source /opt/ros/kinetic/setup.bash
-export TURTLEBOT_GAZEBO_WORLD_FILE="$(pwd)/catkin/src/worlds/myworld.world"
+
 
 xterm  -e  " roslaunch turtlebot_gazebo turtlebot_world.launch" &    
 sleep 5
