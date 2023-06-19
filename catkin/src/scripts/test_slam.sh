@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # build the workspace
-# source environment.bash
+source environment.bash
 cd $(pwd)/../..; catkin_make
 
 source devel/setup.bash
