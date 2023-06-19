@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # build the workspace
-source environment.bash
+# source environment.bash
 cd $(pwd)/../..; catkin_make
 
 source devel/setup.bash
-source /opt/ros/kinetic/setup.bash
+#source /opt/ros/kinetic/setup.bash
 
 
 xterm  -e  " roslaunch turtlebot_gazebo turtlebot_world.launch" &    
