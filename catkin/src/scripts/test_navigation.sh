@@ -10,11 +10,8 @@ roslaunch turtlebot_gazebo turtlebot_world.launch" &
 
 sleep 5
 
-xterm -e "cd $(pwd)/../..;
-source devel/setup.bash;
-source /opt/ros/kinetic/setup.bash;
-export TURTLEBOT_GAZEBO_MAP_FILE='/home/workspace/udacity_homeservicerobot/catkin/src/map/map.yaml';
-roslaunch turtlebot_gazebo amcl_demo.launch" &
+xterm -e "source /opt/ros/kinetic/setup.bash;
+roslaunch turtlebot_gazebo amcl_demo.launch mapfile:=/home/workspace/udacity_homeservicerobot/catkin/src/map/map.yaml" &
 
 sleep 5
 
