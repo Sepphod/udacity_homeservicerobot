@@ -12,7 +12,8 @@ sleep 5
 
 xterm -e "cd $(pwd)/../..;
 source devel/setup.bash;
-export TURTLEBOT_GAZEBO_MAP_FILE="$(pwd)/map/map.yaml";
+source /opt/ros/kinetic/setup.bash;
+export TURTLEBOT_GAZEBO_MAP_FILE='/home/workspace/udacity_homeservicerobot/catkin/src/map/map.yaml';
 roslaunch turtlebot_gazebo amcl_demo.launch" &
 
 sleep 5
