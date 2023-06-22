@@ -5,7 +5,9 @@ source devel/setup.bash;
 catkin_make;
 source devel/setup.bash;
 export ROBOT_INITIAL_POSE='-x -2.49 -y -4.28 -z 0 -R 0 -P 0 -Y 0';
-roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=$(pwd)/src/worlds/new_building.world" &
+export TURTLEBOT_GAZEBO_WORLD_FILE='$(pwd)/src/worlds/new_building.world';
+roslaunch turtlebot_gazebo turtlebot_world.launch" &
+# roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=$(pwd)/src/worlds/new_building.world" &
 
 sleep 5
 
