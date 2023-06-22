@@ -12,7 +12,7 @@ sleep 5
 
 xterm -e "cd $(pwd)/../..;
 source devel/setup.bash;
-export TURTLEBOT_GAZEBO_MAP_FILE="$(pwd)/src/map/map.yaml";
+export TURTLEBOT_GAZEBO_MAP_FILE="$(pwd)/map/map.yaml";
 roslaunch turtlebot_gazebo amcl_demo.launch" &
 
 sleep 5
