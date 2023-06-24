@@ -10,7 +10,8 @@ roslaunch turtlebot_gazebo turtlebot_world.launch" &
 
 sleep 5
 
-xterm -e "roslaunch turtlebot_gazebo amcl_demo.launch mapfile:=/home/workspace/udacity_homeservicerobot/catkin/src/map/map.yaml" &
+xterm -e "export TURTLEBOT_GAZEBO_MAP_FILE='/home/workspace/udacity_homeservicerobot/catkin/src/map/map2.yaml';
+roslaunch turtlebot_gazebo amcl_demo.launch" &
 
 sleep 5
 
