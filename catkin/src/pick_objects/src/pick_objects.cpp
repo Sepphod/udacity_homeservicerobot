@@ -11,7 +11,7 @@ int main(int argc, char** argv){
   //tell the action client that we want to spin a thread by default
   actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> action_client{"move_base", true};
   //set up publisher to broadcast if robot is at goal marker
-  ros::Publisher goal_reach_pub = node_handle.advertise<std_msgs::UInt8>{"/goal_reached", 1};
+  ros::Publisher goal_reach_pub = node_handle.advertise<std_msgs::UInt8>("/goal_reached", 1);
   // Wait 5 sec for move_base action server to come up
   while(!action_client.waitForServer(ros::Duration{5.0})){
     ROS_INFO("Waiting");
