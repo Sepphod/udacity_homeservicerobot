@@ -18,7 +18,7 @@ sleep 5
 
 xterm -e "cd $(pwd)/../..;
 source devel/setup.bash;
-rrosrun rviz rviz -d /home/workspace/udacity_homeservicerobot/catkin/src/rvizConfig/home_service_robot.rviz" &
+rosrun rviz rviz -d /home/workspace/udacity_homeservicerobot/catkin/src/rvizConfig/home_service_robot.rviz" &
 
 sleep 10
 xterm  -e  "cd $(pwd)/../..;
