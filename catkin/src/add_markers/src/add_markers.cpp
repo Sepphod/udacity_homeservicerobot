@@ -15,7 +15,7 @@ int main( int argc, char** argv ) {
   ros::NodeHandle node_handle;
   ros::Rate rate(5);
   ros::Publisher marker_publisher = node_handle.advertise<visualization_msgs::Marker>("visualization_marker", 1);
-  ros::Subscriber odom_subscriber = node_handle.subscribe("/reached_goal", 1, goalStateCallback);
+  ros::Subscriber odom_subscriber = node_handle.subscribe("/goal_to_reach", 1, goalStateCallback);
 
   ROS_INFO("Subscribed to required goal");
 
@@ -50,10 +50,10 @@ int main( int argc, char** argv ) {
         node_handle.getParam("/pick_up_position/tx", marker.pose.position.x);
         node_handle.getParam("/pick_up_position/ty", marker.pose.position.y);
         node_handle.getParam("/pick_up_position/tz", marker.pose.position.z);
-        node_handle.getParam("/pick_up_position/qx", marker.pose.orientation.x);
-        node_handle.getParam("/pick_up_position/qy", marker.pose.orientation.y);
-        node_handle.getParam("/pick_up_position/qz", marker.pose.orientation.z);
-        node_handle.getParam("/pick_up_position/qw", marker.pose.orientation.w);
+        node_handle.getParam("/pick_up_position/quat_x", marker.pose.orientation.x);
+        node_handle.getParam("/pick_up_position/quat_y", marker.pose.orientation.y);
+        node_handle.getParam("/pick_up_position/quat_z", marker.pose.orientation.z);
+        node_handle.getParam("/pick_up_position/quat_w", marker.pose.orientation.w);
         break;
       } 
 
@@ -79,10 +79,10 @@ int main( int argc, char** argv ) {
         node_handle.getParam("/drop_off_position/tx", marker.pose.position.x);
         node_handle.getParam("/drop_off_position/ty", marker.pose.position.y);
         node_handle.getParam("/drop_off_position/tz", marker.pose.position.z);
-        node_handle.getParam("/drop_off_position/qx", marker.pose.orientation.x);
-        node_handle.getParam("/drop_off_position/qy", marker.pose.orientation.y);
-        node_handle.getParam("/drop_off_position/qz", marker.pose.orientation.z);
-        node_handle.getParam("/drop_off_position/qw", marker.pose.orientation.w);
+        node_handle.getParam("/drop_off_position/quat_x", marker.pose.orientation.x);
+        node_handle.getParam("/drop_off_position/quat_y", marker.pose.orientation.y);
+        node_handle.getParam("/drop_off_position/quat_z", marker.pose.orientation.z);
+        node_handle.getParam("/drop_off_position/quat_w", marker.pose.orientation.w);
         break;
       }
       default: {
@@ -100,10 +100,8 @@ int main( int argc, char** argv ) {
       ros::Duration{1.0}.sleep();
     }
 
-    //publish the marker
     marker_publisher.publish(marker);
 
-    // if last marker published and noted as done exit
     if (isDropOffReached) {
       ROS_INFO("Destination reached");
       ros::Duration{7.0}.sleep();
