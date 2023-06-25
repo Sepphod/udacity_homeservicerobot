@@ -1,3 +1,4 @@
+#include <vector>
 #include <ros/ros.h>
 #include <move_base_msgs/MoveBaseAction.h>
 #include <actionlib/client/simple_action_client.h>
@@ -23,32 +24,38 @@ int main(int argc, char** argv){
   goal.target_pose.header.stamp = ros::Time::now();
 
   // Define a list of positions and orientations for the robot to reach
-  float waypoints[2][3] = { 
-                            { 2.5, 2,  1.57}, 
-                            {-7,   3, -3.14}  
-                          };
+  struct WayPoint {
+    float x;
+    float y;
+    float orientation;
+  };
 
-  int num_points = 2;
+  std::vector<WayPoint> all_waypoints{};
 
-  for (int i=0; i < num_points; i++){
+  WayPoint pickupGoal {1,1,1};
+  all_waypoints.push_back(pickupGoal);
+  WayPoint dropOffGoal {2,2,2};
+  all_waypoints.push_back(dropOffGoal);
 
-      goal.target_pose.pose.position.x = waypoints[i][0];
-      goal.target_pose.pose.position.y = waypoints[i][1];
-      goal.target_pose.pose.orientation = tf::createQuaternionMsgFromYaw(waypoints[i][2]);
+  for (auto it = all_waypoints.cbegin(); it != all_waypoints.cend(); ++it) {
+    goal.target_pose.pose.position.x = it->x;
+    goal.target_pose.pose.position.y = it->y;
+    goal.target_pose.pose.orientation = tf::createQuaternionMsgFromYaw(it->orientation);
 
-       // Send the goal position and orientation for the robot to reach
-      ROS_INFO("Sending goal");
-      action_client.sendGoal(goal);
+    // first iteration is the pickup_goal
+    // second iteration is the goal to drop-off
+    ROS_INFO("Sending goal");
+    action_client.sendGoal(goal);
 
-      // Wait an infinite time for the results
-      action_client.waitForResult();
+    action_client.waitForResult();
 
-      // Check if the robot reached its goal
-      if(action_client.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
-        ROS_INFO("Goal reached!");
-      else
-        ROS_INFO("Failed!");
-      ros::Duration{5.0}.sleep();
+    if(action_client.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
+      ROS_INFO("Goal reached!");
+    } else {
+      ROS_INFO("Failed!");
+    }
+
+    ros::Duration{5.0}.sleep();
   }
 
   return 0;
