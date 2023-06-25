@@ -3,7 +3,7 @@
 #include <std_msgs/UInt8.h>
 
 
-std::uint8_t goal_state{0};
+uint8_t goal_state{0};
 
 void goalStateCallback(const std_msgs::UInt8::ConstPtr& msg) {
    goal_state = msg->data;
@@ -15,7 +15,7 @@ int main( int argc, char** argv ) {
   ros::NodeHandle node_handle;
   ros::Rate rate(5);
   ros::Publisher marker_publisher = node_handle.advertise<visualization_msgs::Marker>("visualization_marker", 1);
-  ros::Subscriber odom_subscriber = node_handle.subscribe<visualization_msgs::Marker>("/reached_goal", 1, goalStateCallback);
+  ros::Subscriber odom_subscriber = node_handle.subscribe("/reached_goal", 1, goalStateCallback);
 
   ROS_INFO("Subscribed to required goal");
 
