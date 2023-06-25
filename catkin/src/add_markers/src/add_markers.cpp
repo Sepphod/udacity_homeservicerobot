@@ -21,6 +21,8 @@ int main( int argc, char** argv ) {
 
   ROS_INFO("Subscribed to required goal");
 
+  bool isDropOffReached{false};
+
   while (ros::ok()) {
     //Do this every cycle to ensure the subscriber receives the message
     ros::spinOnce();
@@ -41,7 +43,7 @@ int main( int argc, char** argv ) {
     marker.color.b = 1.0f;
     marker.color.a = 1.0;    
 
-    switch (goal_reach_state)
+    switch (goal_state)
     {
       case 0: {
         ROS_INFO("publish marker to pick up");
@@ -73,6 +75,8 @@ int main( int argc, char** argv ) {
         ROS_INFO("Let's publish the drop-off marker");
         ros::Duration{5.0}.sleep();
 
+        isDropOffReached = true;
+
         marker.action = visualization_msgs::Marker::ADD;
         node_handle.getParam("/drop_off_loc/tx", marker.pose.position.x);
         node_handle.getParam("/drop_off_loc/ty", marker.pose.position.y);
@@ -81,7 +85,6 @@ int main( int argc, char** argv ) {
         node_handle.getParam("/drop_off_loc/qy", marker.pose.orientation.y);
         node_handle.getParam("/drop_off_loc/qz", marker.pose.orientation.z);
         node_handle.getParam("/drop_off_loc/qw", marker.pose.orientation.w);
-        done = true;
         break;
       }
       default: {
@@ -90,7 +93,7 @@ int main( int argc, char** argv ) {
       }
     }
 
-    while (marker_pub.getNumSubscribers() < 1)
+    while (marker_publisher.getNumSubscribers() < 1)
     {
       if (!ros::ok()) {
         return 0;
@@ -103,7 +106,7 @@ int main( int argc, char** argv ) {
     marker_publisher.publish(marker);
 
     // if last marker published and noted as done exit
-    if (done) {
+    if (isDropOffReached) {
       ROS_INFO("Destination reached");
       ros::Duration{7.0}.sleep();
       return 0;
