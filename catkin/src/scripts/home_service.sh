@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/bin/sh
 
 xterm  -e "cd $(pwd)/../..;
 source devel/setup.bash;
@@ -21,7 +20,21 @@ source devel/setup.bash;
 rosrun rviz rviz -d /home/workspace/udacity_homeservicerobot/catkin/src/rvizConfig/home_service_robot.rviz" &
 
 sleep 10
+
 xterm  -e  "cd $(pwd)/../..;
 source devel/setup.bash;
 rosparam load $(pwd)/../config/marker.yaml;
 rosrun add_markers add_markers"
+
+sleep 3
+xterm  -e  "cd $(pwd)/../..;
+source devel/setup.bash;
+rosparam load $(pwd)/../config/marker.yaml;
+rosrun pick_objects pick_objects"
+
+
+
+
+
+
+

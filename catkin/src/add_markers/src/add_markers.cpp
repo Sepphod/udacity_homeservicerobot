@@ -17,7 +17,7 @@ int main( int argc, char** argv ) {
   ros::NodeHandle node_handle{};
   ros::Rate rate(5);
   ros::Publisher marker_publisher = node_handle.advertise<visualization_msgs::Marker>("visualization_marker", 1);
-  ros::Subscriber odom_subscriber = node_handle.subscribe("/goal_reached", 1, goalStateCallback);
+  ros::Subscriber odom_subscriber = node_handle.subscribe<visualization_msgs::Marker>("/goal_reached", 1, goalStateCallback);
 
   ROS_INFO("Subscribed to required goal");
 
