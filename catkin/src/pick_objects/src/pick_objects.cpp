@@ -32,9 +32,9 @@ int main(int argc, char** argv){
 
   std::vector<WayPoint> all_waypoints{};
 
-  WayPoint pickupGoal {0,-4.28,1.57};
+  WayPoint pickupGoal {2,2.5,1.57};
   all_waypoints.push_back(pickupGoal);
-  WayPoint dropOffGoal {2,-3,-3.14};
+  WayPoint dropOffGoal {-7,3,-3.14};
   all_waypoints.push_back(dropOffGoal);
 
   for (auto it = all_waypoints.cbegin(); it != all_waypoints.cend(); ++it) {
