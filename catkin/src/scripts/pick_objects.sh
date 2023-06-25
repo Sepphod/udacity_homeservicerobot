@@ -22,4 +22,5 @@ roslaunch turtlebot_rviz_launchers view_navigation.launch" &
 sleep 10
 xterm  -e  "cd $(pwd)/../..;
 source devel/setup.bash;
-rosrun pick_objects pick_objects"
+rosrun pick_objects pick_objects" &
+
