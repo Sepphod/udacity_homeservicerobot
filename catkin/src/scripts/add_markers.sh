@@ -24,4 +24,4 @@ sleep 10
 xterm  -e  "cd $(pwd)/../..;
 source devel/setup.bash;
 rosparam load $(pwd)/../config/marker.yaml;
-rosrun add_markers add_markers"
+rosrun add_markers add_markers" & 
