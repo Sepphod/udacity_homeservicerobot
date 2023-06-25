@@ -1,8 +1,7 @@
-#include "ros/ros.h"
-#include "visualization_msgs/Marker.h"
+#include <ros/ros.h>
+#include <visualization_msgs/Marker.h>
 #include <std_msgs/UInt8.h>
-#include <cmath>
-#include <cstdint>
+
 
 std::uint8_t goal_state{0};
 
