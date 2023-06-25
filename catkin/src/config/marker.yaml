@@ -1,6 +1,6 @@
 pick_up_position:
-  tx: 0.0
-  ty: -4.0
+  tx: 2.0
+  ty: 0.0
   tz: 0.0
   qx: 0.0
   qy: 0.0
