@@ -12,7 +12,7 @@ void goalStateCallback(const std_msgs::UInt8::ConstPtr& msg) {
 
 int main( int argc, char** argv ) {
   ros::init(argc, argv, "add_markers");
-  ros::NodeHandle node_handle{};
+  ros::NodeHandle node_handle;
   ros::Rate rate(5);
   ros::Publisher marker_publisher = node_handle.advertise<visualization_msgs::Marker>("visualization_marker", 1);
   ros::Subscriber odom_subscriber = node_handle.subscribe<visualization_msgs::Marker>("/reached_goal", 1, goalStateCallback);
