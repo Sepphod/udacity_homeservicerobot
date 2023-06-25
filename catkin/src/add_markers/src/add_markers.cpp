@@ -49,13 +49,13 @@ int main( int argc, char** argv ) {
         ROS_INFO("publish marker to pick up");
 
         marker.action = visualization_msgs::Marker::ADD;
-        node_handle.getParam("/pick_up_loc/tx", marker.pose.position.x);
-        node_handle.getParam("/pick_up_loc/ty", marker.pose.position.y);
-        node_handle.getParam("/pick_up_loc/tz", marker.pose.position.z);
-        node_handle.getParam("/pick_up_loc/qx", marker.pose.orientation.x);
-        node_handle.getParam("/pick_up_loc/qy", marker.pose.orientation.y);
-        node_handle.getParam("/pick_up_loc/qz", marker.pose.orientation.z);
-        node_handle.getParam("/pick_up_loc/qw", marker.pose.orientation.w);
+        node_handle.getParam("/pick_up_position/tx", marker.pose.position.x);
+        node_handle.getParam("/pick_up_position/ty", marker.pose.position.y);
+        node_handle.getParam("/pick_up_position/tz", marker.pose.position.z);
+        node_handle.getParam("/pick_up_position/qx", marker.pose.orientation.x);
+        node_handle.getParam("/pick_up_position/qy", marker.pose.orientation.y);
+        node_handle.getParam("/pick_up_position/qz", marker.pose.orientation.z);
+        node_handle.getParam("/pick_up_position/qw", marker.pose.orientation.w);
         break;
       } 
 
@@ -78,13 +78,13 @@ int main( int argc, char** argv ) {
         isDropOffReached = true;
 
         marker.action = visualization_msgs::Marker::ADD;
-        node_handle.getParam("/drop_off_loc/tx", marker.pose.position.x);
-        node_handle.getParam("/drop_off_loc/ty", marker.pose.position.y);
-        node_handle.getParam("/drop_off_loc/tz", marker.pose.position.z);
-        node_handle.getParam("/drop_off_loc/qx", marker.pose.orientation.x);
-        node_handle.getParam("/drop_off_loc/qy", marker.pose.orientation.y);
-        node_handle.getParam("/drop_off_loc/qz", marker.pose.orientation.z);
-        node_handle.getParam("/drop_off_loc/qw", marker.pose.orientation.w);
+        node_handle.getParam("/drop_off_position/tx", marker.pose.position.x);
+        node_handle.getParam("/drop_off_position/ty", marker.pose.position.y);
+        node_handle.getParam("/drop_off_position/tz", marker.pose.position.z);
+        node_handle.getParam("/drop_off_position/qx", marker.pose.orientation.x);
+        node_handle.getParam("/drop_off_position/qy", marker.pose.orientation.y);
+        node_handle.getParam("/drop_off_position/qz", marker.pose.orientation.z);
+        node_handle.getParam("/drop_off_position/qw", marker.pose.orientation.w);
         break;
       }
       default: {

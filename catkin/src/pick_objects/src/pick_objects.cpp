@@ -22,12 +22,6 @@ int main(int argc, char** argv){
   goal.target_pose.header.frame_id = "map";
   goal.target_pose.header.stamp = ros::Time::now();
 
-  // struct WayPoint {
-  //   float x;
-  //   float y;
-  //   float orientation;
-  // };
-
   // Send the goal position and orientation for the robot for pick-up location
   ROS_INFO("publishing pick-up goal");
   // Define a position and orientation for the robot to reach
@@ -42,7 +36,7 @@ int main(int argc, char** argv){
 
   action_client.waitForResult();
 
-  if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
+  if(action_client.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
     ROS_INFO("turtlebot has reached pick-up position");
     status_msg.data = 1;
     goal_reach_pub.publish(status_msg);
@@ -56,13 +50,13 @@ int main(int argc, char** argv){
   ros::Duration(3.0).sleep();
 
   // Define a position and orientation for the robot to reach
-  node_handle.getParam("/drop_off_loc/tx", goal.target_pose.pose.position.x);
-  node_handle.getParam("/drop_off_loc/ty", goal.target_pose.pose.position.y);
-  node_handle.getParam("/drop_off_loc/tz", goal.target_pose.pose.position.z);
-  node_handle.getParam("/drop_off_loc/qx", goal.target_pose.pose.orientation.x);
-  node_handle.getParam("/drop_off_loc/qy", goal.target_pose.pose.orientation.y);
-  node_handle.getParam("/drop_off_loc/qz", goal.target_pose.pose.orientation.z);
-  node_handle.getParam("/drop_off_loc/qw", goal.target_pose.pose.orientation.w);
+  node_handle.getParam("/drop_off_position/tx", goal.target_pose.pose.position.x);
+  node_handle.getParam("/drop_off_position/ty", goal.target_pose.pose.position.y);
+  node_handle.getParam("/drop_off_position/tz", goal.target_pose.pose.position.z);
+  node_handle.getParam("/drop_off_position/qx", goal.target_pose.pose.orientation.x);
+  node_handle.getParam("/drop_off_position/qy", goal.target_pose.pose.orientation.y);
+  node_handle.getParam("/drop_off_position/qz", goal.target_pose.pose.orientation.z);
+  node_handle.getParam("/drop_off_position/qw", goal.target_pose.pose.orientation.w);
   action_client.sendGoal(goal);
 
   ROS_INFO("navigating to drop-off position");
