@@ -8,8 +8,8 @@ pick_up_position:
   qw: 2.0
 
 drop_off_position:
-  tx: 2.0
-  ty: -3.0
+  tx: 5.0
+  ty: 1.0
   tz: 0.0
   qx: 0.0
   qy: 0.0
