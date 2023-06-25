@@ -22,5 +22,6 @@ roslaunch turtlebot_rviz_launchers view_navigation.launch" &
 sleep 10
 xterm  -e  "cd $(pwd)/../..;
 source devel/setup.bash;
+rosparam load $(pwd)/../config/marker.yaml;
 rosrun pick_objects pick_objects" &
 

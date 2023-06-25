@@ -27,13 +27,13 @@ int main(int argc, char** argv){
   // Send the goal position and orientation for the robot for pick-up location
   ROS_INFO("publishing pick-up goal");
   // Define a position and orientation for the robot to reach
-  node_handle.getParam("/pick_up_loc/tx", goal.target_pose.pose.position.x);
-  node_handle.getParam("/pick_up_loc/ty", goal.target_pose.pose.position.y);
-  node_handle.getParam("/pick_up_loc/tz", goal.target_pose.pose.position.z);
-  node_handle.getParam("/pick_up_loc/qx", goal.target_pose.pose.orientation.x);
-  node_handle.getParam("/pick_up_loc/qy", goal.target_pose.pose.orientation.y);
-  node_handle.getParam("/pick_up_loc/qz", goal.target_pose.pose.orientation.z);
-  node_handle.getParam("/pick_up_loc/qw", goal.target_pose.pose.orientation.w);
+  node_handle.getParam("/pick_up_position/tx", goal.target_pose.pose.position.x);
+  node_handle.getParam("/pick_up_position/ty", goal.target_pose.pose.position.y);
+  node_handle.getParam("/pick_up_position/tz", goal.target_pose.pose.position.z);
+  node_handle.getParam("/pick_up_position/qx", goal.target_pose.pose.orientation.x);
+  node_handle.getParam("/pick_up_position/qy", goal.target_pose.pose.orientation.y);
+  node_handle.getParam("/pick_up_position/qz", goal.target_pose.pose.orientation.z);
+  node_handle.getParam("/pick_up_position/qw", goal.target_pose.pose.orientation.w);
   action_client.sendGoal(goal);
 
   action_client.waitForResult();
