@@ -23,7 +23,6 @@ int main(int argc, char** argv){
   goal.target_pose.header.frame_id = "map";
   goal.target_pose.header.stamp = ros::Time::now();
 
-  // Define a list of positions and orientations for the robot to reach
   struct WayPoint {
     float x;
     float y;
